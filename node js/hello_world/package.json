@@ -1,0 +1,22 @@
+{
+  "name": "hello_world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hello",
+    "word",
+    "blog",
+    "f8",
+    "bai",
+    "dau"
+  ],
+  "author": "cong be",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
