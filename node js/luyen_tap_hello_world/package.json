@@ -1,5 +1,5 @@
 {
-  "name": "hello_world",
+  "name": "luyen_tap_hello_world",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,17 +8,18 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "luyen",
+    "tap",
     "hello",
-    "word",
-    "blog",
-    "f8",
-    "bai",
-    "dau"
+    "world",
+    "f8"
   ],
-  "author": "cong be",
+  "author": "cong",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
     "morgan": "^1.10.0",
     "nodemon": "^2.0.13"
   }
