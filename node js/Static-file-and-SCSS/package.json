@@ -1,0 +1,26 @@
+{
+  "name": "next",
+  "version": "1.0.0",
+  "description": "scss, cong, f8, thanks",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --inspect src\\index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "scss",
+    "cong",
+    "f8",
+    "thanks"
+  ],
+  "author": "cong be",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "nodemon": "^2.0.13"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
