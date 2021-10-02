@@ -7,6 +7,8 @@ const path      = require('path')
 
 app.use(morgan('combined'))
 
+app.use(express.static(path.join(__dirname,'public')))
+
 app.engine('hbs', handlebars({
     extname: '.hbs'
 }));
