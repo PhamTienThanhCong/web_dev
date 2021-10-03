@@ -17,23 +17,17 @@ app.set('views', path.join(__dirname,'scrouce/views'));
 
 app.use(express.static(path.join(__dirname,'public')))
 
+app.use(express.urlencoded({
+  extended: true
+}));
+app.use(express.json());
 
 app.get('/', (req, res) => {
-  
-  if (req.query.email == "cong.pttc@gmail.com" && req.query.passworld == "cong" && req.query.check == "on"){
-    res.render('home')
-  }
-  else{
-    console.log("lỗi cú pháp")
-  }
+  console.log(req.body.email)
   res.render('login')
 })
 
 app.get('/home', (req, res) => {
-  test = req.query.search
-  if (test=="news"){
-    res.render('news')
-  }
   res.render('home')
 })
 
