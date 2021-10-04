@@ -4,8 +4,7 @@ const port        = 3000
 const morgan      = require('morgan')
 const handlebars  = require('express-handlebars');
 const path        = require('path');
-const { Console } = require('console');
-var test;
+const route       = require('./routes')
 
 // app.use(morgan('combined'))
 
@@ -22,22 +21,7 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.render('login')
-})
-
-app.post('/', (req, res) => {
-  console.log(req.body)
-  res.render('home')
-})
-
-app.get('/home', (req, res) => {
-  res.render('home')
-})
-
-app.get('/news', (req, res) => {
-  res.render('news')
-})
+route(app)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
