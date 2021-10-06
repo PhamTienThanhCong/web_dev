@@ -1,5 +1,18 @@
+const Course = require('../models/course')
+
 
 class NewControllers{
+    scrouce(req, res){
+        Course.find({}, function (err, courses) {
+           if (!err) {
+               res.json(courses)
+            }
+           else {
+               res.status(404).send('Sorry, we cannot find that!')
+           };
+          });
+    }
+
     index(req, res){
         res.render('news')
     }

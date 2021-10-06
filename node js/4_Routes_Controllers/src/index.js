@@ -4,6 +4,9 @@ const port = 3000
 const handlebars = require('express-handlebars')
 const path = require('path')
 const route = require('./routes')
+const db = require('./config/DB')
+
+db.connet()
 
 app.engine('hbs', handlebars({
   extname: '.hbs'
