@@ -3,7 +3,7 @@ const router = express.Router()
 
 var newController = require('../app/controller/newController')
 
-router.use('/data',newController.data);
-router.use('/',newController.home);
+router.get('/data',newController.data);
+router.get('/',newController.home);
 
 module.exports = router

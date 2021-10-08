@@ -3,8 +3,8 @@ const router = express.Router()
 
 const fontController = require('../app/controller/fontController')
 
-router.use('/login',fontController.login)
-router.use('/registers',fontController.registers)
-router.use('/',fontController.home)
+router.get('/login',fontController.login)
+router.get('/registers',fontController.registers)
+router.get('/',fontController.home)
 
 module.exports = router
