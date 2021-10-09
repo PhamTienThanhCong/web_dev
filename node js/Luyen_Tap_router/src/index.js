@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, 'scoures/views'))
 // sử dụng file public
 app.use(express.static(path.join(__dirname, 'public')))
 
-db.connect()
+db.connet()
 route(app)
 
 // app.get('/news', (req, res) => {

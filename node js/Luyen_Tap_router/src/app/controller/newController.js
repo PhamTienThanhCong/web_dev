@@ -1,15 +1,17 @@
-const dataTest = require('../model/dataTest')
+const data = require('../model/DataTest')
+const { mutipleMongooseToObject } = require('../../util/mongooseHelper')
 
 class newControllers{
-    data(req, res){
-        dataTest.find({},function (err, testdatas) {
-            if(!err){
-                res.json(testdatas);
-            }
-            else{
-                res.status(400).send('Sorry, we cannot find that :((( ')
-            }
-        })
+    
+    data(req, res, next){
+        data.find({})
+            .then(testdatas => {
+                res.render('data',{ 
+                    testdatas: mutipleMongooseToObject(testdatas)
+                })
+            })
+            // .then(testdatas => res.json(testdatas))
+            .catch(next)
     }
 
     home(req, res){
