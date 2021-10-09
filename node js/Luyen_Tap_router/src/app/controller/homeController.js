@@ -3,19 +3,15 @@ const { mutipleMongooseToObject } = require('../../util/mongooseHelper')
 
 class newControllers{
     
-    data(req, res, next){
+    home(req, res, next){
         data.find({})
             .then(testdatas => {
-                res.render('data',{ 
+                res.render('home',{ 
                     testdatas: mutipleMongooseToObject(testdatas)
                 })
             })
             // .then(testdatas => res.json(testdatas))
             .catch(next)
-    }
-
-    home(req, res){
-        res.render('news')
     }
 }
 
