@@ -1,0 +1,33 @@
+{
+  "name": "4_routes_controllers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "css": "node-sass -w src/scoures/scss/style.scss src/public/css/app.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "quan",
+    "ly",
+    "khoa",
+    "hoc",
+    "be",
+    "cong",
+    "f8"
+  ],
+  "author": "cong pham",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "mongoose": "^6.0.9",
+    "mongoose-slug-generator": "^1.0.4"
+  },
+  "devDependencies": {
+    "mysql": "^2.18.1",
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.13"
+  }
+}
