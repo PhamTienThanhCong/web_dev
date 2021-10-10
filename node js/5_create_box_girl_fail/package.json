@@ -1,7 +1,7 @@
 {
   "name": "4_routes_controllers",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tổng hợp một vài khóa học của codeXplore",
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js",
