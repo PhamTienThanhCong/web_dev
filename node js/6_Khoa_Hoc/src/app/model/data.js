@@ -10,6 +10,7 @@ const BlogPost = new Schema({
   description: {type: String},
   ytb: {type: String},
   url: { type: String, slug: "name", unique: true },
+  author: { type: String,default: "Be Công"},
   createTime: {type: Date, default: Date.now},
   updateTime: {type: Date, default: Date.now},
 });

@@ -17,12 +17,11 @@ app.engine('hbs', handlebars({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'scoure/views'));
 
-// app.get('/', function (req, res) {
-//     res.render('home');
-// });
-// app.get('/news', function (req, res) {
-//     res.render('news');
-// });
+// Phương Thức post
+app.use(express.urlencoded({
+  extended: true
+}))
+app.use(express.json())
 
 db.connet();
 route(app);
