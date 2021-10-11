@@ -6,12 +6,14 @@ class newController {
         res.render('news')
     }
     home(req,res){
-        res.render('home')
+        res.send('hello')
     }
     data(req,res,next){
         data.find({})
-            .then(courseras =>{
-                res.json(courseras)
+            .then(courseras => {
+                res.render('home',{
+                    courseras: mutipleMongooseToObject(courseras)
+                })
             })
             .catch(next)
     }
