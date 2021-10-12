@@ -18,10 +18,31 @@
                 <td>{{this.author}}</td>
                 <td>
                     <a href="manage/{{this._id}}/update">Sửa </a>
-                    <a style="margin-left: 15px;" href="manage/{{this._id}}/delete"> Xóa</a>
+                    <a style="margin-left: 15px;" href="manage/{{this._id}}/delete" data-bs-toggle="modal" data-bs-target="#asked-delete">
+                        Xóa</a>
                 </td>
             </tr>
+            <div class="modal fade" id="asked-delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Comfirm ???</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn Có chắc chắn muốn xóa khóa học ???
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Trở lại</button>
+                            <button type="button" class="btn btn-danger">Đồng Ý</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {{/each}}
         </tbody>
     </table>
 </div>
+
+<!-- Modal -->

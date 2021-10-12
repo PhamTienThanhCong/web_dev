@@ -5,6 +5,7 @@ const path = require('path')
 const handlebars  = require('express-handlebars');
 const route = require('./router')
 const db = require('./config/db/index')
+var methodOverride = require('method-override')
 
 var Handlebars = require('handlebars');
 
@@ -28,6 +29,8 @@ app.use(express.urlencoded({
   extended: true
 }))
 app.use(express.json())
+
+app.use(methodOverride('_method'))
 
 db.connet();
 route(app);

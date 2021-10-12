@@ -23,7 +23,9 @@ class manageCouser {
         // res.send(req.params.id)
     }
     kho(req,res,next){
-        res.render('coursera/kho')
+        data.updateOne({_id: req.params.id}, req.body )
+            .then(() => res.redirect('/manage'))
+            .catch(next);
     }
 }
 
