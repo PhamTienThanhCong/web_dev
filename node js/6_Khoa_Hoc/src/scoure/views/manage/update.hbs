@@ -1,0 +1,27 @@
+<h1 style="text-align: center;">Sửa Khóa học</h1>
+
+<div class="mt-4">
+    <form method="post" action="kho">
+        <div class="mb-3">
+            <label class="form-label">Tên Khóa học</label>
+            <input type="text" class="form-control" value="{{coursera.name}}" name="name">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tác Giả   </label>
+            <input type="text" class="form-control" value="{{coursera.author}}" name="author">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Ảnh Giới Thiệu</label>
+            <input type="text" class="form-control" value="{{coursera.img}}" name="img">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Mô tả</label>
+            <textarea  class="form-control" name="description">{{coursera.description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">url video</label>
+            <input type="text" class="form-control" value="{{coursera.ytb}}" name="ytb">
+        </div>
+        <button type="submit" class="btn btn-primary">Cập nhập</button>
+    </form>
+</div>

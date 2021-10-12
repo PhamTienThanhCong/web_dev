@@ -6,6 +6,12 @@ const handlebars  = require('express-handlebars');
 const route = require('./router')
 const db = require('./config/db/index')
 
+var Handlebars = require('handlebars');
+
+Handlebars.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
 
 // sử dụng các file public
 app.use(express.static(path.join(__dirname,'public')));

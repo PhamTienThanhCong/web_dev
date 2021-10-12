@@ -1,5 +1,6 @@
 var data = require('../model/data');
 var { MongooseToObject } = require('../../util/mongooseHelper');
+var { mutipleMongooseToObject } = require('../../util/mongooseHelper');
 
 class couserController {
     data(req,res,next){
