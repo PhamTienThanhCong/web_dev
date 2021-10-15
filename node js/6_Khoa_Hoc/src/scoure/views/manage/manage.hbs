@@ -18,31 +18,52 @@
                 <td>{{this.author}}</td>
                 <td>
                     <a href="manage/{{this._id}}/update">Sửa </a>
-                    <a style="margin-left: 15px;" href="manage/{{this._id}}/delete" data-bs-toggle="modal" data-bs-target="#asked-delete">
-                        Xóa</a>
+                    <a style="margin-left: 15px;" href="" data-id-whatever="{{this._id}}" data-bs-toggle="modal"
+                        data-bs-target="#asked-delete">Xóa</a>
                 </td>
             </tr>
-            <div class="modal fade" id="asked-delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Comfirm ???</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Bạn Có chắc chắn muốn xóa khóa học ???
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Trở lại</button>
-                            <button type="button" class="btn btn-danger">Đồng Ý</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             {{/each}}
         </tbody>
     </table>
 </div>
 
 <!-- Modal -->
+
+<div class="modal fade" id="asked-delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Comfirm ???</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn Có chắc chắn muốn xóa khóa học ???
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" id="btn-delete-course" class="btn btn-danger">Xóa Bỏ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- form delete --}}
+ <form name="delete-course" method="post"></form>
+
+<script>
+        var id
+        var delete_from = document.forms['delete-course'];
+        var exampleModal = document.getElementById('asked-delete')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            id = button.getAttribute('data-id-whatever');
+        });
+
+        var btn = document.getElementById('btn-delete-course');
+        btn.onclick = function() {
+            delete_from.action = '/manage/'+id+'/delete'+'?_method=DELETE';
+            delete_from.submit();
+        }
+        
+</script>

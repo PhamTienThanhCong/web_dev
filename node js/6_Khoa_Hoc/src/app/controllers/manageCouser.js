@@ -27,6 +27,11 @@ class manageCouser {
             .then(() => res.redirect('/manage'))
             .catch(next);
     }
+    delete(req,res,next){
+        data.deleteOne({_id: req.params.id})
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
 }
 
 module.exports = new manageCouser
