@@ -1,4 +1,5 @@
-<h1 style="text-align: center;">Khóa học của tôi</h1>
+<h1 style="text-align: center;">Khóa học đã xóa</h1>
+<a href="/manage">trở lại</a>
 
 <div class="mt-5">
     <table class="table">
@@ -17,24 +18,21 @@
                 <td>{{this.name}}</td>
                 <td>{{this.author}}</td>
                 <td>
-                    <a href="manage/{{this._id}}/update">Sửa </a>
+                    <a href="" class="restoreDelete" style="margin-left: -15%;" id="{{this._id}}">Khôi Phục </a>
                     <a style="margin-left: 15px;" href="" data-id-whatever="{{this._id}}" data-bs-toggle="modal"
-                        data-bs-target="#asked-delete">Xóa</a>
+                        data-bs-target="#asked-delete">Xóa Vĩnh Viễn</a>
                 </td>
             </tr>
             {{else}}
                 <tr>
                     <td colspan="5" class="text-center">
-                        Bạn chưa đăng khóa học nào. <a href="/coursera/create">Đăng tại đây</a>
+                        Thùng Rác Trống!!!
                     </td>
                 </tr>                
             {{/each}}
         </tbody>
     </table>
 </div>
-
-<a href="/manage/recbin">Khóa học đã xóa</a>
-
 
 <!-- Modal -->
 
@@ -64,15 +62,28 @@
         var id
         var delete_from = document.forms['delete-course'];
         var exampleModal = document.getElementById('asked-delete')
+        var btnDelete = document.getElementById('btn-delete-course');
+        var btnRestore = document.getElementsByClassName('restoreDelete')
+
         exampleModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
             id = button.getAttribute('data-id-whatever');
         });
 
-        var btn = document.getElementById('btn-delete-course');
-        btn.onclick = function() {
-            delete_from.action = '/manage/'+id+'/delete'+'?_method=DELETE';
+        btnDelete.onclick = function() {
+            delete_from.action = '/manage/'+id+'/RecbinDelete'+'?_method=DELETE';
             delete_from.submit();
         }
-        
+        //restore
+        var i = 0;
+
+        while (btnRestore[i] != undefined) {
+    
+            btnRestore[i].onclick = (function(event,j=i) {
+                event.preventDefault();
+                console.log(j);
+            })
+            i++;
+        }
+
 </script>

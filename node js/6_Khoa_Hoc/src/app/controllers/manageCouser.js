@@ -4,7 +4,7 @@ var { mutipleMongooseToObject } = require('../../util/mongooseHelper');
 
 class manageCouser {
     manage(req,res,next){
-        data.find({})
+        data.find()
             .then(courseras =>{
                 res.render('manage/manage',{
                     courseras: mutipleMongooseToObject(courseras)
@@ -12,6 +12,17 @@ class manageCouser {
             })
             .catch(next)
     }
+
+    manageRecbin(req,res,next){
+        data.findDeleted()
+            .then(courseras =>{
+                res.render('manage/recbin',{
+                    courseras: mutipleMongooseToObject(courseras)
+                })
+            })
+            .catch(next)
+    }
+
     update(req,res,next){
         data.findById(req.params.id)
             .then(coursera =>{
@@ -20,18 +31,34 @@ class manageCouser {
                 })
             })
             .catch(next)
-        // res.send(req.params.id)
     }
+
+    //Thông báo update
     kho(req,res,next){
         data.updateOne({_id: req.params.id}, req.body )
             .then(() => res.redirect('/manage'))
             .catch(next);
     }
+    // Xóa Giả
     delete(req,res,next){
-        data.deleteOne({_id: req.params.id})
+        data.deleteById(req.params.id)
             .then(() => res.redirect('back'))
             .catch(next);
     }
+
+    //XÓA vĩnh viễn
+    recbinDelete(req,res,next){
+        data.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    restore(req,res,next){
+        data.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
 }
 
 module.exports = new manageCouser
