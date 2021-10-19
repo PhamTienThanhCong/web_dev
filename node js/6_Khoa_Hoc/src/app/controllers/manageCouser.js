@@ -54,7 +54,7 @@ class manageCouser {
     }
 
     restore(req,res,next){
-        data.deleteOne({ _id: req.params.id })
+        data.restore({ _id: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next);
     }

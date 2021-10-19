@@ -18,8 +18,11 @@
                 <td>{{this.name}}</td>
                 <td>{{this.author}}</td>
                 <td>
-                    <a href="" class="restoreDelete" style="margin-left: -15%;" id="{{this._id}}">Khôi Phục </a>
-                    <a style="margin-left: 15px;" href="" data-id-whatever="{{this._id}}" data-bs-toggle="modal"
+                    <form method="post" action='/manage/{{this._id}}/restoreDelete?_method=PATCH'>
+                        <button type="submit" class="btn btn-primary">Cập nhập</button>
+                    </form>
+                    {{!-- <a href="" style="margin-left: -15%;" id="{{this._id}}">Khôi Phục </a> --}}
+                    <a class="btn btn-danger" href="" data-id-whatever="{{this._id}}" data-bs-toggle="modal"
                         data-bs-target="#asked-delete">Xóa Vĩnh Viễn</a>
                 </td>
             </tr>
@@ -75,15 +78,4 @@
             delete_from.submit();
         }
         //restore
-        var i = 0;
-
-        while (btnRestore[i] != undefined) {
-    
-            btnRestore[i].onclick = (function(event,j=i) {
-                event.preventDefault();
-                console.log(j);
-            })
-            i++;
-        }
-
 </script>

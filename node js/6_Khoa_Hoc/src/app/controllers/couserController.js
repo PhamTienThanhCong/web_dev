@@ -20,8 +20,8 @@ class couserController {
     kho(req,res,next){
         const newData = new data(req.body)
         newData.save()
-            .then(res.render('coursera/kho'))
-        .catch(next)
+        .then(() => res.redirect('/manage'))
+        .catch(next);
     }
 }
 
