@@ -4,10 +4,11 @@ var { mutipleMongooseToObject } = require('../../util/mongooseHelper');
 
 class manageCouser {
     manage(req,res,next){
-        data.find()
-            .then(courseras =>{
+        Promise.all([data.find({}),data.countDocumentsDeleted()])
+            .then(([courseras,numberDelete]) => {
                 res.render('manage/manage',{
-                    courseras: mutipleMongooseToObject(courseras)
+                    numberDelete,
+                    courseras: mutipleMongooseToObject(courseras),
                 })
             })
             .catch(next)
