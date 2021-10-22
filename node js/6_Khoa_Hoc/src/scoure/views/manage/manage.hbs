@@ -1,10 +1,28 @@
 <h1 style="text-align: center;">Khóa học của tôi</h1>
 
+<div class="mt-4 d-flex align-items-center">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="check-box-all">
+        <label class="form-check-label" for="check-box-all">
+            Chọn tất cả
+        </label>
+    </div>
+
+    <select class="form-select form-select-sm form-select-style" style="width: 150px;">
+        <option selected>Lựa chọn</option>
+        <option value="1">Xóa</option>
+    </select>
+
+    <input type="checkbox" class="btn-check" autocomplete="off" disabled>
+    <label class="btn btn-primary" for="btn-check-3">Thực hiện</label>
+</div>
+
+
 <div class="mt-5">
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col" colspan="2">#</th>
                 <th scope="col">Tên Khóa Học</th>
                 <th scope="col">Tác Giả</th>
                 <th scope="col">Chỉnh Sửa</th>
@@ -13,6 +31,9 @@
         <tbody>
             {{#each courseras}}
             <tr>
+                <th>
+                    <input class="form-check-input" name="courseIds[]" type="checkbox" value="{{this._id}}">
+                </th>
                 <th scope="row">{{inc @index}}</th>
                 <td>{{this.name}}</td>
                 <td>{{this.author}}</td>
@@ -23,11 +44,11 @@
                 </td>
             </tr>
             {{else}}
-                <tr>
-                    <td colspan="5" class="text-center">
-                        Bạn chưa đăng khóa học nào. <a href="/coursera/create">Đăng tại đây</a>
-                    </td>
-                </tr>                
+            <tr>
+                <td colspan="5" class="text-center">
+                    Bạn chưa đăng khóa học nào. <a href="/coursera/create">Đăng tại đây</a>
+                </td>
+            </tr>
             {{/each}}
         </tbody>
     </table>
@@ -58,21 +79,34 @@
 </div>
 
 {{!-- form delete --}}
- <form name="delete-course" method="post"></form>
+<form name="delete-course" method="post"></form>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
         var id
-        var delete_from = document.forms['delete-course'];
-        var exampleModal = document.getElementById('asked-delete')
+        var delete_from;
+        var exampleModal;
+        var checkBoxAll;
+
+        delete_from = document.forms['delete-course'];
+        exampleModal = document.getElementById('asked-delete');
+        checkBoxAll = $('#check-box-all');
+
         exampleModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
             id = button.getAttribute('data-id-whatever');
         });
 
         var btn = document.getElementById('btn-delete-course');
-        btn.onclick = function() {
-            delete_from.action = '/manage/'+id+'/delete'+'?_method=DELETE';
+        btn.onclick = function () {
+            delete_from.action = '/manage/' + id + '/delete' + '?_method=DELETE';
             delete_from.submit();
         }
-        
+
+
+        console.log(checkBoxAll)
+
+
+    })
+
 </script>
