@@ -54,11 +54,27 @@ class manageCouser {
             .catch(next);
     }
 
+    //
     restore(req,res,next){
         data.restore({ _id: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next);
     }
+
+    selecAction(req, res, next) {
+        switch (req.body.ActionSelect) {
+            case 'delete':
+                data.delete({_id: {$in: req.body.courseIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            default:
+                res.json({ messenge : 'action is not allowed'})
+                break;
+        }
+    }
+
+
 
 }
 

@@ -1,42 +1,62 @@
 <h1 style="text-align: center;">Khóa học đã xóa</h1>
 <a href="/manage">trở lại</a>
 
-<div class="mt-5">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Tên Khóa Học</th>
-                <th scope="col">Tác Giả</th>
-                <th scope="col">Chỉnh Sửa</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each courseras}}
-            <tr>
-                <th scope="row">{{inc @index}}</th>
-                <td>{{this.name}}</td>
-                <td>{{this.author}}</td>
-                <td>
-                    <form method="post" action='/manage/{{this._id}}/restoreDelete?_method=PATCH'>
-                        <button type="submit" class="btn btn-primary">Cập nhập</button>
-                    </form>
-                    {{!-- <a href="" style="margin-left: -15%;" id="{{this._id}}">Khôi Phục </a> --}}
-                    <a class="btn btn-danger" href="" data-id-whatever="{{this._id}}" data-bs-toggle="modal"
-                        data-bs-target="#asked-delete">Xóa Vĩnh Viễn</a>
-                </td>
-            </tr>
-            {{else}}
+
+<form name="btnSubmitCheck" method="POST" action="manage/selecAction">
+    <div class="mt-4 d-flex align-items-center">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="check-box-all">
+            <label class="form-check-label" for="check-box-all">
+                Chọn tất cả
+            </label>
+        </div>
+
+        <select style="width: 150px;" class="form-select form-select-sm form-select-style" name="ActionSelect" required>
+            <option selected>Lựa chọn</option>
+            <option value="restore">Khôi phục</option>
+            <option value="delete">Xóa vĩnh viễn</option>
+        </select>
+
+        <button class="btn btn-primary button-submit-checked disabled">Thực hiện</button>
+    </div>
+
+    <div class="mt-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2">#</th>
+                    <th scope="col">Tên Khóa Học</th>
+                    <th scope="col">Tác Giả</th>
+                    <th scope="col">Chỉnh Sửa</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each courseras}}
+                <tr>
+                    <th>
+                        <input class="form-check-input check-box-couser" name="courseIds[]" type="checkbox"
+                            value="{{this._id}}">
+                    </th>
+                    <th scope="row">{{inc @index}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.author}}</td>
+                    <td>
+                        <a href="" style="margin-left: -15px;" class="btn-restore" id="{{this._id}}">Khôi Phục </a>
+                        <a style="margin-left: 15px;" href="" data-id-whatever="{{this._id}}" data-bs-toggle="modal"
+                            data-bs-target="#asked-delete">Xóa sạch</a>
+                    </td>
+                </tr>
+                {{else}}
                 <tr>
                     <td colspan="5" class="text-center">
                         Thùng Rác Trống!!!
                     </td>
-                </tr>                
-            {{/each}}
-        </tbody>
-    </table>
-</div>
-
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</form>
 <!-- Modal -->
 
 <div class="modal fade" id="asked-delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -59,23 +79,52 @@
 </div>
 
 {{!-- form delete --}}
- <form name="delete-course" method="post"></form>
+<form name="delete-course" method="post"></form>
 
 <script>
-        var id
-        var delete_from = document.forms['delete-course'];
-        var exampleModal = document.getElementById('asked-delete')
-        var btnDelete = document.getElementById('btn-delete-course');
-        var btnRestore = document.getElementsByClassName('restoreDelete')
+    var id
+    var delete_from = document.forms['delete-course'];
+    var exampleModal = document.getElementById('asked-delete')
+    var btnDelete = document.getElementById('btn-delete-course');
+    var btnRestore = $('.btn-restore')
+    
 
-        exampleModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;
-            id = button.getAttribute('data-id-whatever');
-        });
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        id = button.getAttribute('data-id-whatever');
+    });
+    // Xóa vĩnh viễn
+    btnDelete.onclick = function () {
+        delete_from.action = '/manage/' + id + '/RecbinDelete' + '?_method=DELETE';
+        delete_from.submit();
+    }
+    // Khôi phục
+    btnRestore.click(function (event) {
+        event.preventDefault();
+        var id = $(this).attr('id');
+        delete_from.action = '/manage/' + id + '/restoreDelete' + '?_method=PATCH';
+        delete_from.submit();
+    })
 
-        btnDelete.onclick = function() {
-            delete_from.action = '/manage/'+id+'/RecbinDelete'+'?_method=DELETE';
-            delete_from.submit();
+
+    var CheckBoxAll = $('#check-box-all');
+    var checkBoxCouser = $('.check-box-couser');
+
+    // chọn tất cả
+    CheckBoxAll.change(function (){
+        var isChecked = ($(this).prop('checked'));
+        checkBoxCouser.prop('checked', isChecked);
+    })
+
+    // chọn 1 cái
+    checkBoxCouser.change(function (){
+        if (checkBoxCouser.length === $('input[name="courseIds[]"]:checked').length){
+            CheckBoxAll.prop('checked',true);
         }
-        //restore
+        else{
+            CheckBoxAll.prop('checked',false);
+        }
+    })
+
+
 </script>
