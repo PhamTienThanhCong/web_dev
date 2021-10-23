@@ -13,7 +13,7 @@
         <option value="1">Xóa</option>
     </select>
 
-    <input type="checkbox" class="btn-check" autocomplete="off" disabled>
+    <input type="checkbox" class="btn-check" id="button-submit-checked" autocomplete="off" disabled="true">
     <label class="btn btn-primary" for="btn-check-3">Thực hiện</label>
 </div>
 
@@ -32,7 +32,7 @@
             {{#each courseras}}
             <tr>
                 <th>
-                    <input class="form-check-input" name="courseIds[]" type="checkbox" value="{{this._id}}">
+                    <input class="form-check-input from-checked-course" name="courseIds[]" type="checkbox" value="{{this._id}}">
                 </th>
                 <th scope="row">{{inc @index}}</th>
                 <td>{{this.name}}</td>
@@ -81,16 +81,20 @@
 {{!-- form delete --}}
 <form name="delete-course" method="post"></form>
 
-<script>
+<script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         var id
         var delete_from;
         var exampleModal;
         var checkBoxAll;
+        var checkBoxCouser;
+        var bottomCheckBox;
 
         delete_from = document.forms['delete-course'];
         exampleModal = document.getElementById('asked-delete');
         checkBoxAll = $('#check-box-all');
+        checkBoxCouser = $('.from-checked-course');
+        bottomCheckBox = document.getElementById('button-submit-checked');
 
         exampleModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
@@ -104,7 +108,28 @@
         }
 
 
-        console.log(checkBoxAll)
+        checkBoxAll.change(function(){
+            var isChecked = $(this).prop('checked');
+            checkBoxCouser.prop('checked',isChecked)
+            if ($(this).prop('checked')){
+                bottomCheckBox.disabled = false;
+            }
+            else{
+                bottomCheckBox.disabled = true;
+            }
+        })
+
+        checkBoxCouser.change(function(){
+            var isChecked = checkBoxCouser.length === $('input[name="courseIds[]"]:checked').length;
+            checkBoxAll.prop('checked',isChecked);
+
+            if (($('input[name="courseIds[]"]:checked').length > 0)){
+                bottomCheckBox.disabled = false;
+            }
+            else{
+                bottomCheckBox.disabled = true;
+            }
+        })
 
 
     })
