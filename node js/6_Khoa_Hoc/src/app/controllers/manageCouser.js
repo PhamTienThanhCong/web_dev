@@ -61,7 +61,8 @@ class manageCouser {
             .catch(next);
     }
 
-    selecAction(req, res, next) {
+    // lựa chọn và Thực hiện nhiều trong home
+    CouserSelecAction(req, res, next) {
         switch (req.body.ActionSelect) {
             case 'delete':
                 data.delete({_id: {$in: req.body.courseIds } })
@@ -70,6 +71,25 @@ class manageCouser {
                 break;
             default:
                 res.json({ messenge : 'action is not allowed'})
+                break;
+        }
+    }
+
+    // lựa chọn và Thực hiện nhiều trong recbin
+    RecbinSelecAction(req, res, next) {
+        switch (req.body.ActionSelect) {
+            case 'restore':
+                data.restore({_id: {$in: req.body.courseIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            case 'delete':
+                data.deleteMany({_id: {$in: req.body.courseIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            default:
+                res.json({ messenge : 'action is not allowed'});
                 break;
         }
     }
