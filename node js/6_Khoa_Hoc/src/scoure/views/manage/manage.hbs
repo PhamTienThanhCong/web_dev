@@ -10,7 +10,7 @@
         </div>
 
         <select style="width: 150px;" class="form-select form-select-sm form-select-style" name="ActionSelect" required>
-            <option selected>Lựa chọn</option>
+            <option value="">Lựa chọn</option>
             <option value="delete">Xóa</option>
         </select>
 
@@ -91,7 +91,6 @@
         var checkBoxAll;
         var checkBoxCouser;
         var bottomCheckBox;
-        var actionCheck;
 
         // set value
         delete_from = document.forms['delete-course'];
@@ -100,7 +99,6 @@
         checkBoxAll = $('#check-box-all');
         checkBoxCouser = $('input[name="courseIds[]"]');
         bottomCheckBox = $('.button-submit-checked');
-        actionCheck = $('select[name="ActionSelect"]');
 
         //lắng nghe của sổ hiện lên
         exampleModal.addEventListener('show.bs.modal', function (event) {
@@ -132,23 +130,17 @@
 
         // Kiểm tra phần lựa chọn
 
-        actionCheck.change(function(){
-            checkBottomBtn();
-        })
 
         // kiểm tra nút submit 
         function checkBottomBtn() {
-            
-            if (($('input[name="courseIds[]"]:checked').length > 0)) {
-                if (actionCheck.prop('value') !== 'Lựa chọn' ){
-                    bottomCheckBox.removeClass('disabled');
-                }
-                
-            }
-            else {
-                bottomCheckBox.addClass('disabled');
-            }
+        var isChecked = $('input[name="courseIds[]"]:checked').length; 
+        if (isChecked > 0){
+            bottomCheckBox.removeClass('disabled');
         }
+        else{
+            bottomCheckBox.addClass('disabled');
+        }
+    }
     })
 
 </script>
