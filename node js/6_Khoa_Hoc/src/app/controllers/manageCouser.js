@@ -4,7 +4,14 @@ var { mutipleMongooseToObject } = require('../../util/mongooseHelper');
 
 class manageCouser {
     manage(req,res,next){
-        Promise.all([data.find({}),data.countDocumentsDeleted()])
+        let courseQuery =data.find({})
+        if(req.query.hasOwnProperty('_sort')){
+            courseQuery = courseQuery.sort({
+                [req.query.column] : req.query.type
+            });
+        }
+
+        Promise.all([courseQuery,data.countDocumentsDeleted()])
             .then(([courseras,numberDelete]) => {
                 res.render('manage/manage',{
                     numberDelete,
@@ -15,7 +22,14 @@ class manageCouser {
     }
 
     manageRecbin(req,res,next){
-        data.findDeleted()
+        let courseQuery = data.findDeleted()
+        if(req.query.hasOwnProperty('_sort')){
+            courseQuery = courseQuery.sort({
+                [req.query.column] : req.query.type
+            });
+        }
+        
+        courseQuery
             .then(courseras =>{
                 res.render('manage/recbin',{
                     courseras: mutipleMongooseToObject(courseras)

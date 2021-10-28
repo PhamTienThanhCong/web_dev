@@ -25,8 +25,14 @@
             <thead>
                 <tr>
                     <th scope="col" colspan="2">#</th>
-                    <th scope="col">Tên Khóa Học</th>
-                    <th scope="col">Tác Giả</th>
+                    <th scope="col">
+                        Tên Khóa Học
+                        {{{sortMiddleware 'name' _sort}}}
+                    </th>
+                    <th scope="col">
+                        Tác Giả
+                        {{{sortMiddleware 'author' _sort}}}
+                    </th>
                     <th scope="col">Chỉnh Sửa</th>
                 </tr>
             </thead>

@@ -17,6 +17,7 @@
         <button class="btn btn-primary button-submit-checked disabled">Thực hiện</button>
 
     </div>
+
 <a href="/coursera/create" class="butoom-create-couser">đăng khóa học</a>
     <div class="mt-5">
         <table class="table">
@@ -25,11 +26,12 @@
                     <th scope="col" colspan="2">#</th>
                     <th scope="col">
                         Tên Khóa Học
-                        <a href="">
-                            <span class="oi oi-resize-height"></span>
-                        </a>
+                        {{{sortMiddleware 'name' _sort}}}
                     </th>
-                    <th scope="col">Tác Giả</th>
+                    <th scope="col">
+                        Tác Giả
+                        {{{sortMiddleware 'author' _sort}}}
+                        </th>
                     <th scope="col">Chỉnh Sửa</th>
                 </tr>
             </thead>
