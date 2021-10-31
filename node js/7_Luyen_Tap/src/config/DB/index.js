@@ -1,15 +1,13 @@
 const mongoose = require('mongoose');
-process.env.SUPPRESS_NO_CONFIG_WARNING = 'y';
-const config = require('config');
-const db = config.get('mongodb+srv://BeCong:cong123@course-name.lghtx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
 async function connet() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/Khoa_Hoc')
-        console.log('Done Connetion !!!')
+        await mongoose.connect('mongodb+srv://cong:123@cluster0.gw8w2.mongodb.net/Khoa_Hoc?retryWrites=true&w=majority')
+        console.log('Ket Noi Thanh Cong !!!')
     } catch (error) {
-        console.log('Fail Connetion :((')
+        console.log('Ket Noi That Bai :((')
     }
 }
+
 
 module.exports = { connet }
