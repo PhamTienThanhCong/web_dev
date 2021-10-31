@@ -1,10 +1,16 @@
+const dataCoursera = require('../model/coursera');
 
 class newControllers{
-    home(req, res, next){
-        res.render('home')
-    }
     new(req, res, next){
-        res.render('new')
+        dataCoursera.find({})
+            .then(dataCoursera=>{
+                res.json(dataCoursera)
+            })
+            .catch(next)
+        // res.render('home')
+    }
+    home(req, res, next){
+        res.render('coursera')
     }
 }
 

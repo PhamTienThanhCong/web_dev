@@ -16,7 +16,13 @@ app.set('views', path.join(__dirname, 'scoures/views'))
 // set đường dẫn cho file public
 app.use(express.static(path.join(__dirname, './public')));
 
-DB.connet();
+// set điều kiện để cho chươngw trình chạy được post
+app.use(express.urlencoded({
+  extended: true,
+}))
+app.use(express.json());
+
+DB.connect;
 route(app);
 
 app.listen(PORT, () => {
