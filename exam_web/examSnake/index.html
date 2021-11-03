@@ -15,17 +15,20 @@
         <div class="menu">
             <div class="chose-lever">
                 <label for="lever">lever: </label>
-                    <select name="lever" id="cars">
-                        <option value="">chọn ve vờ</option>
+                    <select name="lever" id="lever">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
             </div>
-            <div class="game-bottom-1">
-                Start: enter
-            </div>
+            <p id="number-goals">
+                Điểm Của Bạn Là: 
+            </p>
+            <p id="number-health">
+                Máu Của Rắn Là: 
+            </p>
+            <button class="game-bottom-1">Start: Enter</button>
             <!-- <div class="game-bottom-2">
                 Stop: space
             </div> -->
@@ -34,18 +37,15 @@
                 contact me 
             </div> -->
             <a class="game-bottom-4" href="https://www.facebook.com/phamtienthanhcong/">contact me</a>
-            <button class="game-bottom-3" onclick="clearInterval(myVar)">exit: esc</button>
+            <button class="game-bottom-3" onclick="exitGame()">exit: key_f</button>
         </div>
 
         <div class="game-menu">
-            <div id="head-snake">
-
-            </div>
-            <div id="game-Fruit">
-
-            </div>
+            <canvas id="myCanvas" width="420" height="420" style="border:1px solid #c3c3c3;">
+    
+            </canvas>
         </div>
     </div>
-    <script src="function.js"></script>
+    <script src="myFunction.js"></script>
 </body>
 </html>
