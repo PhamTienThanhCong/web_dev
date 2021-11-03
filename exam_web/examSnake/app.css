@@ -9,7 +9,7 @@ body{
 .menu{
     position: absolute;
     width: 350px;
-    height:400px;
+    height:420px;
     margin-left: 40px;
     border: 2px solid #4CAF50;
 }
@@ -30,6 +30,7 @@ body{
     display: inline-block;
     width: 120px;
     background-color: #4CAF50;
+    border: 0;
 }
 
 .game-bottom-1:hover,.game-bottom-2:hover,.game-bottom-3:hover,.game-bottom-4:hover{
@@ -44,11 +45,13 @@ body{
 .game-bottom-2{
     top: 100px;
     left: 50px;
+    width: 140px;
 }
 
 .game-bottom-3{
     top: 200px;
     left: 50px;
+    width: 140px;
 }
 
 .game-bottom-4{
@@ -60,8 +63,8 @@ body{
 
 .game-menu{
     position: absolute;
-    width: 400px;
-    height:400px;
+    width: 420px;
+    height:420px;
     margin-left: 455px;
     border: 2px solid blue;
 }
@@ -70,7 +73,15 @@ body{
     position: relative;
     top: 0;
     left: 0;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color:yellow;
+}
+
+#game-Fruit{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: pink;
+    border-radius: 50%;
 }
