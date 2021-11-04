@@ -2,9 +2,13 @@ var canvas = document.getElementById("myCanvas");
 var head = canvas.getContext("2d");
 var lever = document.getElementById("lever");
 var bottmStart = document.getElementsByClassName("game-bottom-1");
+var bottmStartMobie = document.getElementsByClassName("start-game");
+var img = document.getElementById("scream");
+var imgHead = document.getElementById("headSnake");
 
 let myVar
 // Khai báo biến
+var maxDiem = 0;
 var x = 0;
 var y = 60;
 var xChange = 0;
@@ -62,7 +66,34 @@ function leverChoice(){
     }
 }
 
-
+function upCase(){
+    if (keyOld !== "s" && keyStop === 1){
+        xChange = -30;
+        yChange = 0;
+        keyOld = "w";
+    }
+}
+function downCase(){
+    if (keyOld !== "w" && keyStop === 1) {
+        xChange = 30;
+        yChange = 0;
+        keyOld = "s";
+    }
+}
+function leftCase(){
+    if (keyOld !== "d" && keyStop === 1) {
+        yChange = -30;
+        xChange = 0;
+        keyOld = 'a';
+    }
+}
+function rightCase(){
+    if (keyOld !== "a" && keyStop === 1) {
+        yChange = 30;
+        xChange = 0;
+        keyOld = 'd';
+    }
+}
 // sử lý phím khi nhập vào
 function keyChange(event) {
     key = event.key;
@@ -195,20 +226,24 @@ function bodySamsung(){
         bodyY[0] = y;
         Diem += 1;
         SucKhoe -= 1;
+        if (Diem >= maxDiem){
+            maxDiem = Diem;
+        }
     }
 }
 
 function changeScreen(){
     // in Ra Màn Hình phần quả
-    const context = canvas.getContext('2d');
-    context.beginPath();
-    context.arc(yFruit+15, xFruit+15, 15, 0, 2 * Math.PI, false);
-    context.fillStyle = 'rgb(255, 114, 131)';
-    context.fill();
-
+    // const context = canvas.getContext('2d');
+    // context.beginPath();
+    // context.arc(yFruit+15, xFruit+15, 15, 0, 2 * Math.PI, false);
+    // context.fillStyle = 'rgb(255, 114, 131)';
+    // context.fill();
+    head.drawImage(img,yFruit,xFruit,30,30);
+    
     // in ra màn hình phần thân
     for (var i=0; i<sizeOfSnake-1; i++){
-        head.fillStyle = 'rgb(140, 236, 139)';
+        head.fillStyle = 'rgb(0, 102, 0)';
         head.fillRect(bodyY[i], bodyX[i], 30, 30);
     }
     if (keyStop === 1 && (xChange !== 0 || yChange !== 0)){
@@ -219,8 +254,9 @@ function changeScreen(){
     // head.clearRect(y, x, 30, 30);
     x = x + xChange;
     y = y + yChange;
-    head.fillStyle = 'rgb(92, 132, 3)';
-    head.fillRect(y, x, 30, 30);
+    // head.fillStyle = 'rgb(92, 132, 3)';
+    // head.fillRect(y, x, 30, 30);
+    head.drawImage(imgHead,y,x,30,30);
 }
 
 function runCode() {
@@ -231,13 +267,22 @@ function runCode() {
         changeScreen(); 
         document.getElementById("number-goals").innerHTML = "Điểm Của Bạn Là: " + Diem;
         document.getElementById("number-health").innerHTML = "Máu Của Rắn Là: " + SucKhoe;
+        document.getElementById("number-goal-max").innerHTML = "Điểm Cao Nhất Là: " + maxDiem;
     }
-    
 };
 
 bottmStart[0].onclick = function() {
     if (runValue === 0){
         runValue = 1;
+        clearInterval(myVar);
+        time = leverChoice();
+        myVar = setInterval(runCode, time);
+    } 
+}
+bottmStartMobie[0].onclick = function() {
+    if (runValue === 0){
+        runValue = 1;
+        clearInterval(myVar);
         time = leverChoice();
         myVar = setInterval(runCode, time);
     } 
@@ -247,10 +292,11 @@ bottmStart[0].onclick = function() {
 function startGame(){
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Enter' && runValue===0){
+            clearInterval(myVar);
             time = leverChoice();
             myVar = setInterval(runCode, time);
         }
     })
 }
 
-startGame();
+// startGame();
