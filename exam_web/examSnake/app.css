@@ -106,19 +106,20 @@ body{
     .mobie-bottom{
         margin-top: 20px;
         display: block;
-        position: absolute;
+        position: relative;
         left: 0; 
         right: 0; 
         margin-left: auto; 
         margin-right: auto; 
         width: 420px;
-        height: 175px;
+        height: 157px;
         background-color:aqua;
     }
     #rotateMode{
         position: relative;
         margin: 0 auto;
-        margin-top: 10px;
+        top: 10px;
+        margin-top: 15px;
         border-radius: 50%;
         width: 125px;
         height: 125px;
@@ -164,22 +165,22 @@ body{
       }
     .game-bottom-1{
         width: 80px;
-        top: -120px;
+        top: -105px;
         left: 40px;
     }
     .game-bottom-2{
         width: 80px;
-        top: -120px;
+        top: -105px;
         left: 210px;
     }
     .game-bottom-3{
         width: 80px;
-        top: -50px;
+        top: -35px;
         left: -130px;
     }
     .game-bottom-4{
         width: 120px;
-        top: -50px;
+        top: -35px;
         left: 30px;
     }
     
