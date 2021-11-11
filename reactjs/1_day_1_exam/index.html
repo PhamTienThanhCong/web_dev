@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add React in One Minute</title>
+  </head>
+  <body>
+
+    <div id="root">
+
+    </div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        const root = document.getElementById("root");
+        const courser = [
+            {
+                name: 'HTML, CSS'
+            },
+            {
+                name: 'Web responsive'
+            },
+            {
+                name: 'ReactJS'
+            }
+        ]
+        function ulRender(){
+          const listItems = courser.map((course) =>
+          <li key={course.name}>
+            {course.name}
+          </li>
+          )
+          return (
+            <ul key="key">
+              {listItems}
+            </ul>);
+        }
+        
+        const h1 = <h1 className="heading"> hello guys </h1>;
+        // const ul = <ul className="nav nav-tabs">
+        //   {
+            
+        //   }
+        //   </ul>
+        const ul = ulRender()
+        // ReactDOM.render(rootTitle,root),
+        ReactDOM.render([h1,ul],root)
+    </script>
+  </body>
+</html>
