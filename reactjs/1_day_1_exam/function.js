@@ -15,7 +15,13 @@ function getData(callback) {
 function App({ data }) {
     return (
         <div className={data.id}>
-            <h2>{data.id}. {data.title}</h2>
+            <button className="botton" 
+                onClick = {()=>{
+                    alert(data.title)
+                }}
+            > 
+                <h2 className="h2-botoom">{data.id}. {data.title}</h2> 
+            </button>
             <img src={data.thumbnail_cdn} alt={data.title} />
             <p>Mô Tả: {data.description}</p>
             <p>Thành Viên: {data.students_count}</p>
