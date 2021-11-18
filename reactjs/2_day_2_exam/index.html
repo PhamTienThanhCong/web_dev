@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +10,62 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
+
+<style>
+    .cssButton{
+        display: block;
+        /* margin : 0 auto; */
+        background-color: red;
+        padding: 20px;
+    }
+</style>
+
 <body>
     <div id="root">
-        hello Guys!
     </div>
+    
+
 </body>
+<script type="text/babel">
+    const root = document.getElementById("root");
+
+    const BotoomInput = {
+        Input(){
+            return <input />;
+        },
+        Checkbox(){
+            return <input type="checkbox" />
+        }
+    }
+
+    function Botoom({content,href,onClick}) {
+        let TypeButton = 'button'
+        const prop = {}
+        if (href) {
+            prop.href = href
+            TypeButton = 'a'
+        }
+
+        if (onClick) {
+            prop.onClick = onClick
+        }
+
+        return <TypeButton {...prop} className="cssButton">{content}</TypeButton>
+    }
+
+    function App(){
+        
+        return (
+            <div className="container">
+                < Botoom 
+                    content = 'click'
+                    href="http://127.0.0.1:5500/index.html"
+                    onClick = {() =>{ console.log('yeu cong')}}
+                />
+            </div>
+        )
+    }
+    ReactDOM.render(<App />,root);
+</script>
+
 </html>
