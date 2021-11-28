@@ -1,9 +1,28 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import './domarrow';
+// import './domarrow';
+
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
 
 function Content() {
     
+
+    const [colorTree,setColorTree] = useState(() => {
+        const colorTrees = []; 
+        for(let i=1;i<32;i++){
+            colorTrees.push('pink')
+        }
+        return colorTrees;
+    })
+
+    var colors = colorTree
+
     const [itemTree, setItemTree] = useState(() => {
         const pointTrees = [];
         const widthScreen = 1000;
@@ -35,36 +54,23 @@ function Content() {
         return pointTrees
     })
 
-    const [time, setTime] = useState(30)
-
-    const setTimeDown = () => {
-        setTime(time-1)
-    }
-
     const DeleteNode = (time) => {
-        setItemTree(pre=>{
-            
+        colors[time]='red'
+        sleep(1000)
+        setItemTree(pre=>{   
             return pre.filter(item => {
                 return item.left !== itemTree[time].left
             }) 
         })
     }
 
-    useEffect(() => {
-        var time = 31
-        setInterval(() =>{
-            time = time-1
-            DeleteNode(time)
-        },1000)
-    },[])
-
 
     return (<div>
         <input type='text'/>        
         <button>click</button>
-        <button onClick={DeleteNode}>delete</button>
+        <button onClick={() => DeleteNode(1)}>delete</button>
     
-        {itemTree.map(item =>{
+        {/* {itemTree.map(item =>{
             if (item.idArrowTree != "cong50475"){    
                 var idFrom = "#"+item.idArrowTreeTo
                 var idTo = "#"+item.idTree
@@ -80,17 +86,21 @@ function Content() {
                 >
                 </connection>
             }
-        })}
+        })} */}
 
-        {itemTree && itemTree.map(item =>{
+
+        {itemTree && itemTree.map((item,index) =>{
             return <div 
                 key={item.idTree}
                 className='TreeStyle'
-                style={{left: item.left, top: item.top}}
-                id={item.idTree}
-                display={item.display}
+                style={{
+                    left: item.left, 
+                    top: item.top, 
+                    backgroundColor:colors[index]
+                }}
+                id={index}
             >
-                {item.left}
+                {item.top}
             </div>
         })}
    
