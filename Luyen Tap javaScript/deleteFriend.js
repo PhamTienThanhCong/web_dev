@@ -40,7 +40,11 @@ for (let i = 0; i < a.length; i++){
     n = n.replace(/\n/g, '');
     names.push(n);
     var b = a[i].getAttribute('href').split('=');
-    links.push(b[1]);
+    b = b[1].split('&');
+    links.push(b[0]);
 }
 console.log(names);
 console.log(links);
+
+// Link để lấy ảnh
+// https://img.youtube.com/vi/nWOkEGJv9DI/sddefault.jpg
