@@ -39,12 +39,26 @@ for (let i = 0; i < a.length; i++){
     var n = (a[i].text).trim();
     n = n.replace(/\n/g, '');
     names.push(n);
-    var b = a[i].getAttribute('href').split('=');
-    b = b[1].split('&');
-    links.push(b[0]);
+    var b = a[i].getAttribute('href');
+    links.push(b);
 }
-console.log(names);
-console.log(links);
+for (var j = 0; j < names.length; j++){
+    console.log(names[j]);
+    console.log(links[j]);
+}
 
 // Link để lấy ảnh
 // https://img.youtube.com/vi/nWOkEGJv9DI/sddefault.jpg
+
+// đếm số thời gian học trong play list youtube video
+var video = $('span#text.style-scope.ytd-thumbnail-overlay-time-status-renderer').text()
+video = video.replaceAll("\n","")
+var a = video.split("  ")
+var sum = 0
+for (let i = 1 ; i < a.length ; i++){
+    sum += parseInt(a[i].split(':')[0])
+}
+var hours = Math.floor(sum / 60);          
+var minutes = sum % 60;
+console.log("video: "+a.length)
+console.log(hours + "h" + minutes+"p")
