@@ -7,7 +7,7 @@ for (let i = 1 ; i < a.length ; i++){
 }
 var hours = Math.floor(sum / 60);          
 var minutes = sum % 60;
-console.log("video: "+a.length)
+console.log("video: "+(a.length-1))
 console.log(hours + "h" + minutes+"p")
 
 // Cách dùng:
