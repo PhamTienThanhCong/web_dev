@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form resgister</title>
+</head>
+
+<body>
+    <h1>Đăng kí tham gia Câu Lạc Bộ</h1>
+    <form method="post" action="./severSave.php">
+        Tên: 
+        <input type="text" name="name">
+        <br>
+        Năm Sinh
+        <input type="number" name="age">
+        <br>
+        Giới tính:
+        <br>
+        <input type="radio" name="sex" value=0> Nam
+        <br>
+        <input type="radio" name="sex" value=1> Nữ
+        <br>
+        <input type="radio" name="sex" value=2> không muốn nói
+        <br>
+
+        Là sinh viên khóa
+        <select name="grade">
+            <option value=15>K15</option>
+            <option value=14>K14</option>
+            <option value=13>K13</option>
+            <option value=12>K12</option>
+            <option value=0>Khác</option>
+        </select>
+        <br>
+        Giới thiệu bản thân:
+        <br>
+        <textarea name="myself" cols="30" rows="10"></textarea>
+        <br>
+        Đường dẫn ảnh:
+        <input type="text" name="image">
+        <br>
+        <button>Đăng kí</button>
+    </form>
+    <a href="./view_all_member.php">Thành viên</a>
+</body>
+</html>
